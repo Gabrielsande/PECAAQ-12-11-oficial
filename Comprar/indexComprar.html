@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finalização de Compra</title>
+  <link rel="stylesheet" href="styleComprar.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="header__inner">
+      <!-- Marca -->
+      <a href="../LaningPage/indexLandingPage.html" class="brand" aria-label="Página inicial">
+        <img src="imgComprar/LogoPecaAq4.png" alt="Logo PeçaAq" class="brand__logo" />
+        <span class="brand__name">PEÇAAQ</span>
+        <!-- area do header, colocada no canto direito -->
+<div class="header__right">
+
+  
+  
+</div>
+
+      </a>
+
+      <!-- Navegação -->
+      <nav class="nav" aria-label="Principal">
+        <a href="../LaningPage/indexLandingPage.html">Home</a>
+        <a href="../Produtos/index.html">Comprar peças</a>
+      </nav>
+
+      <!-- Ações do header -->
+      <div class="header-actions" style="display:flex;gap:12px;align-items:center">
+        <button id="btnCarrinho" class="btn-cart" aria-label="Abrir carrinho">
+          🛒 <span id="cart-count" class="cart-badge">0</span>
+        </button>
+
+       <div id="user-area">Faça seu cadastro</div>
+
+
+        <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="checkout-container">
+    <!-- Imagem do produto -->
+    <div class="produto-imagem" aria-hidden="false">
+      <img src="" alt="" />
+      <!-- valor será preenchido dinamicamente pelo JS -->
+      <input type="hidden" id="id_anuncio" value="">
+    </div>
+
+    <!-- Detalhes do produto -->
+    <div class="produto-detalhes">
+      <h1 id="productTitle">Bateria Moura 60H</h1>
+      <p class="marca">
+        Marca: <span id="productMarca">Moura</span> | Referência: <span id="productSku">1234567890123</span>
+      </p>
+
+      <div class="preco-promo" id="productPromo">Economize R$ 150,00</div>
+
+      <div class="preco">
+        <span class="preco-avista" id="productPrice">R$ 480,00 à vista</span>
+        <span class="parcelamento" id="productParcelamento">Em até 10x R$ 48,00 sem juros</span>
+      </div>
+
+      <h3>O que você precisa saber sobre este produto:</h3>
+      <p id="productDesc">
+        Bateria Moura 60H para veículos automotivos...
+      </p>
+    </div>
+
+    <!-- Caixa lateral de compra -->
+    <aside class="caixa-compra" aria-labelledby="productTitle" role="complementary">
+      <div class="info-extra">
+        <p><strong>Devolução Grátis</strong> em até 7 dias.</p>
+        <p><strong>Compra Garantida</strong> ou seu dinheiro de volta.</p>
+      </div>
+
+      <label for="quantidade">Quantidade:</label>
+      <select id="quantidade" name="quantidade">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+
+      <button id="btn-finalizar" class="btn-comprar">COMPRAR AGORA</button>
+
+      <!-- Botão de Adicionar ao Carrinho -->
+      <button id="add-to-cart" class="btn-carrinho">Adicionar ao Carrinho</button>
+
+      <label for="cep">CEP</label>
+      <input type="text" id="cep" name="cep" placeholder="Digite seu CEP" />
+      <button id="btn-frete" class="btn-frete">CALCULAR FRETE</button>
+    </aside>
+  </main>
+
+  <!-- Seção Avaliações -->
+  <section class="avaliacoes-container" aria-labelledby="avaliacoesTitle">
+    <h2 id="avaliacoesTitle">Avaliações dos Clientes</h2>
+
+    <div class="avaliacoes-lista" id="avaliacoes-lista" aria-live="polite"></div>
+
+    <form id="form-avaliacao" class="form-avaliacao" aria-label="Formulário de avaliação">
+      <h3 id="form-title">Deixe sua avaliação</h3>
+
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required />
+
+      <!-- não usamos label for para o container de estrelas; acessibilidade via aria -->
+      <div>
+        <span id="estrela-label">Nota:</span>
+        <div id="estrela-container" role="radiogroup" aria-labelledby="estrela-label"></div>
+      </div>
+
+      <label for="comentario">Comentário:</label>
+      <textarea id="comentario" name="comentario" rows="3" required></textarea>
+
+      <button type="submit" id="btn-submit">Enviar Avaliação</button>
+      <button type="button" id="btn-cancel" style="display:none; margin-top: 10px;">Cancelar Alteração</button>
+    </form>
+  </section>
+
+  <!-- Modal de pagamento -->
+  <div id="modal-pagamento" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content" role="document">
+      <button class="fechar" id="fechar" aria-label="Fechar modal">&times;</button>
+      <h2>Escolha o método de pagamento</h2>
+
+      <div class="opcoes-pagamento" role="tablist" aria-label="Métodos de pagamento">
+        <button class="metodo" data-metodo="cartao" role="tab" aria-selected="false">💳 Cartão</button>
+        <button class="metodo" data-metodo="pix" role="tab" aria-selected="false">⚡ Pix</button>
+      </div>
+
+      <!-- Formulário Cartão -->
+      <div id="pagamento-cartao" class="form-pagamento hidden" aria-hidden="true">
+        <label for="num-cartao">Número do Cartão</label>
+        <input type="text" id="num-cartao" name="num-cartao" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" />
+
+        <label for="nome-cartao">Nome no Cartão</label>
+        <input id="nome-cartao" name="nome-cartao" type="text" placeholder="Nome completo" />
+
+        <label for="validade-cartao">Validade</label>
+        <input id="validade-cartao" name="validade-cartao" type="text" placeholder="MM/AA" maxlength="5" />
+
+        <label for="cvv-cartao">CVV</label>
+        <input id="cvv-cartao" name="cvv-cartao" type="text" placeholder="123" maxlength="3" />
+
+        <button id="btn-pagar-cartao" class="btn-comprar">Pagar com Cartão</button>
+      </div>
+
+      <!-- Pagamento Pix -->
+      <div id="pagamento-pix" class="form-pagamento hidden" aria-hidden="true">
+        <p>Escaneie o QR Code ou copie o código abaixo:</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=chavepix@empresa.com" alt="QR Code Pix" />
+        <textarea readonly aria-label="Chave Pix">chavepix@empresa.com</textarea>
+        <button id="btn-pagar-pix" class="btn-comprar">Pagar com Pix</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Endereço -->
+  <div id="modal-endereco" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content" role="document">
+      <button class="fechar" id="fechar-endereco" aria-label="Fechar modal">&times;</button>
+      <h2>Informe seu endereço para entrega</h2>
+      <form id="form-endereco">
+        <label for="rua">Rua:</label>
+        <input type="text" id="rua" name="rua" required />
+
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" name="numero" required />
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" name="bairro" required />
+
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade" required />
+
+        <label for="cep-endereco">CEP:</label>
+        <input type="text" id="cep-endereco" name="cep-endereco" required />
+
+        <button type="submit" class="btn-comprar">Confirmar Endereço</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Sucesso -->
+  <div id="modal-sucesso" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content" role="document">
+      <button class="fechar" id="fechar-sucesso" aria-label="Fechar modal">&times;</button>
+      <h2>Compra Bem Sucedida!</h2>
+      <p>Seu pedido foi confirmado com sucesso.</p>
+      <p><strong>Código de Rastreio:</strong> <span id="codigo-rastreio"></span></p>
+    </div>
+  </div>
+
+ <!-- Modal do Carrinho -->
+<div id="carrinhoModal" class="modal">
+  <div class="modal-content">
+    <span id="fecharCarrinho" class="close">&times;</span>
+    <h2>Meu Carrinho</h2>
+    <ul id="listaCarrinho"></ul>
+    <p><strong>Total:</strong> R$ <span id="totalCarrinho">0.00</span></p>
+    <button id="btn-checkout">Finalizar Compra</button>
+  </div>
+</div>
+
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-section">
+        <h4>Links Úteis</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Minha Conta</a></li>
+          <li><a href="#">Meus Pedidos</a></li>
+          <li><a href="#">Empresas</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Atendimento</h4>
+        <ul>
+          <li><strong>E-mail</strong><br><a href="mailto:PeçaAq2025@gmail.com.br">PeçaAq2025@gmail.com.br</a></li>
+          <li><strong>Telefone</strong><br><a href="tel:+5551980314793">(51) 98031-4793</a></li>
+          <li><strong>WhatsApp</strong><br><a href="https://wa.me/5551980314793">(+55) 51 98031-4793</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Informações</h4>
+        <ul>
+          <li><a href="#">Quem somos</a></li>
+          <li><a href="#">Soluções</a></li>
+          <li><a href="#">Diferenciais</a></li>
+          <li><a href="#">Modelo de Negócio</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Privacidade</h4>
+        <ul>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Política de Entrega</a></li>
+          <li><a href="#">Garantia, Trocas e Devoluções</a></li>
+          <li><a href="#">Termos de uso</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <div class="copyright-img">
+        <img src="imgComprar/LogoPecaAq4.png" alt="Logo PeçaAq" class="brand__logo" />
+        <span class="footer__logo">PEÇAAQ</span>
+      </div>
+
+      <div>&copy; 2025 PeçaAq. Todos os direitos reservados.</div>
+
+      <div class="social-buttons">
+        <a href="https://www.instagram.com" target="_blank" class="social-btn instagram" rel="noopener"><img src="imgComprar/Instagram.svg" alt="Instagram"></a>
+        <a href="https://www.linkedin.com" target="_blank" class="social-btn linkedin" rel="noopener"><img src="imgComprar/Linkedin.svg" alt="LinkedIn"></a>
+        <a href="mailto:contato@pecaaq.com.br" class="social-btn gmail"><img src="imgComprar/Facebook.svg" alt="Facebook"></a>
+      </div>
+    </div>
+  </footer>
+<script src="../headerProfile.js"></script>
+
+  <script src="scriptComprar.js"></script>
+</body>
+</html>
