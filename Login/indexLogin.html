@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PeçaAq - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styleLogin.css" />
+</head>
+
+<body>
+    <main class="login-container">
+        <section class="login-card" aria-label="Login do PeçaAq">
+
+            <!-- LOGO CENTRAL -->
+            <div class="logo-container">
+                <img src="imgLogin/LogoPecaAq4.png" alt="Logo PeçaAq" class="logo">
+                <span class="brand__name">PEÇAAQ</span>
+            </div>
+
+            <!-- Abas de ação: Sou Cliente / Sou Empresa -->
+            <div class="tab-selector" aria-label="Seleção de tela">
+                <button class="tab active" data-tab="cliente">Sou Cliente</button>
+                <button class="tab" data-tab="empresa">Sou Empresa</button>
+            </div>
+
+            <!-- Conteúdo dinâmico -->
+            <div class="content-area">
+
+                <!-- Login Cliente -->
+                <form id="form-cliente" class="login-form active" autocomplete="on" novalidate method="POST" action="login.php">
+                    <input type="hidden" name="tipo" value="Cliente">
+                    <div class="form-field">
+                        <label for="email-cliente">E-mail</label>
+                        <input type="email" id="email-cliente" name="login" placeholder="exemplo@dominio.com" required />
+                    </div>
+                    <div class="form-field">
+                        <label for="senha-cliente">Senha</label>
+                        <input type="password" id="senha-cliente" name="senha" placeholder="Sua senha" required />
+                    </div>
+                    <button type="submit" class="primary-btn btn-modern">Entrar</button>
+
+                    <!-- Link de cadastro -->
+                    <p class="hint">
+                        Não tem uma conta? 
+                  <a href="../Cadastrar/index.html" class="link-to-cadastro">Cadastre-se</a>
+
+
+                    </p>
+                </form>
+
+                <!-- Login Empresa -->
+                <form id="form-empresa" class="login-form" autocomplete="on" novalidate method="POST" action="login.php" style="display:none;">
+                    <input type="hidden" name="tipo" value="Empresa">
+                    <div class="form-field">
+                        <label for="cnpj">CNPJ</label>
+                        <input type="text" id="cnpj" name="login" placeholder="00.000.000/0000-00" required />
+                    </div>
+                    <div class="form-field">
+                        <label for="senha-empresa">Senha</label>
+                        <input type="password" id="senha-empresa" name="senha" placeholder="Sua senha" required />
+                    </div>
+                    <button type="submit" class="primary-btn btn-modern">Entrar</button>
+
+                    <!-- Link de cadastro -->
+                    <p class="hint">
+                        Não tem uma conta? 
+                <a href="../Cadastrar/index.html" class="link-to-cadastro">Cadastre-se</a>
+
+
+                    </p>
+                </form>
+
+            </div>
+        </section>
+    </main>
+<script src="../headerProfile.js"></script>
+    <script src="scriptLogin.js"></script>
+</body>
+</html>

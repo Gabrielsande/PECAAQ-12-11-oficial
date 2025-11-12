@@ -1,0 +1,565 @@
+/* ==========================================
+   Variáveis globais
+========================================== */
+:root {
+  --bg: #0b1220;
+  --card: #121a2b;
+  --elev: #0f1729;
+  --text: #e7eaf3;
+  --muted: #9aa4bf;
+  --brand: #3b82f6;
+  --brand-2: #06b6d4;
+  --stroke: #213146;
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .25);
+}
+
+/* ==========================================
+   Reset e Box Sizing
+========================================== */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: white;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1120px, 100%);
+  margin-inline: auto;
+}
+
+/* ==========================================
+   Botões
+========================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1.1rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+  gap: .5rem;
+}
+
+.btn--primary {
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+  color: #001228;
+  box-shadow: var(--shadow);
+}
+
+.btn--primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.btn--light {
+  background: #fff;
+  color: #0b1220;
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--stroke);
+  color: var(--text);
+}
+
+.btn--ghost:hover {
+  background: #1b2236;
+}
+
+/* ==========================================
+   Header / Navbar
+========================================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #0D1B2A;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.5rem 2rem;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  height: 110px;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand__logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.brand__name {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Navegação */
+.nav {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.nav a {
+  padding: .5rem .75rem;
+  border-radius: 6px;
+  color: #c8d2ee;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  background: #162139;
+  color: #fff;
+}
+
+/* Botão destaque (cadastro/login) */
+.btn-primary {
+  background: var(--accent, #2e8b3a);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #16712f;
+  transform: translateY(-2px);
+}
+
+/* Toggle menu (mobile) */
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav__toggle span {
+  width: 22px;
+  height: 2px;
+  background: #c8d2ee;
+  border-radius: 2px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+  .nav__toggle {
+    display: flex;
+  }
+}
+
+/* ==========================================
+   Hero / Carrossel principal
+========================================== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+.hero__track {
+  display: flex;
+  width: 100%;
+  transform: translateX(0);
+  transition: transform .6s ease;
+}
+
+.hero__slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 80vh;   /* ocupa 80% da altura da janela */
+  min-height: 600px;
+}
+
+
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .35), rgba(0, 0, 0, .55)), var(--bg) center/cover no-repeat;
+}
+
+.hero__content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.hero__content h1 {
+  font-size: clamp(1.8rem, 3vw + 1rem, 3.2rem);
+  margin: 0;
+}
+
+.hero__content p {
+  max-width: 620px;
+  color: #d5dcf3;
+}
+
+.hero__controls {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.ctrl {
+  background: #121a2b;
+  border: 1px solid var(--stroke);
+  color: var(--text);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.ctrl:hover {
+  background: #1b2236;
+}
+
+.dots {
+  display: flex;
+  gap: .4rem;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+}
+
+.dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: #3a4663;
+  border: 0;
+}
+
+.dots button[aria-current="true"] {
+  width: 20px;
+  background: linear-gradient(90deg, var(--brand), var(--brand-2));
+}
+.btn--light {
+  background-color:  transparent;
+  color: #ffffff;
+  color: #1a1a1a;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+/* Efeito hover */
+.btn--light:hover {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   Quem Somos - fundo branco, logo maior e texto preto
+========================================== */
+.about {
+
+  color: #0b1220;
+  display: flex;
+  gap: 2rem;
+  padding: 3rem 0;
+}
+
+.about__logo {
+  text-align: center;
+}
+
+.about__logo img {
+  width: 150px; /* logo maior */
+  height: 150px;
+}
+
+.about__logo .brand__name {
+  color: #000000; /* PEÇAAQ preto */
+  font-size: 30px;
+  font-weight: 800;
+  display: block;
+  margin-top: 10px;
+}
+
+.about__text p {
+  color: #0b1220;
+}
+
+/* Responsivo About */
+@media (max-width: 760px) {
+  .about {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .about__logo {
+    order: -1;
+    justify-self: start;
+  }
+}
+
+/* ==========================================
+   Nossas Soluções - fundo branco
+========================================== */
+.solutions {
+  background-color: #ffffff;
+  color: #0b1220;
+  display: flex;
+  gap: 2rem;
+  padding: 3rem 0;
+}
+
+.solutions__text p {
+  color: #0b1220;
+}
+
+/* Responsivo Solutions */
+@media (max-width: 760px) {
+  .solutions {
+    flex-direction: column;
+    text-align: left;
+  }
+}
+
+/* ==========================================
+   Nossos Diferenciais - fundo escuro
+========================================== */
+.differentials {
+  background-color: var(--bg); /* mantém o fundo escuro */
+  color: var(--text);
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.differentials__text {
+  max-width: 550px;
+}
+
+.differentials__text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.differentials__text p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: #e7eaf3;
+}
+
+.differentials__image {
+  max-width: 550px;
+  flex: 1;
+}
+
+/* Responsivo Diferenciais */
+@media (max-width: 768px) {
+  .differentials {
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+
+  .differentials__text,
+  .differentials__image {
+    max-width: 100%;
+  }
+}
+
+/* ==========================================
+   Footer
+========================================== */
+.site-footer {
+  background: #0a0f1c;
+  background-size: cover;
+  color: #eee;
+  padding: 40px;
+  font-size: 14px;
+  height: 500px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  gap: 160px;
+  padding-bottom: 25px;
+  margin-bottom: 20px;
+}
+
+.footer-section {
+  text-align: left;
+}
+
+.footer-section h4 {
+  color: #fff;
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: #eee;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-section ul li a:hover {
+  color: var(--accent);
+}
+
+.copyright {
+  font-size: 13px;
+  color: #aaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 160px;
+  border-top: 1px solid #333;
+  padding-top: 20px;
+}
+
+.copyright-img {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer__logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.social-btn img {
+  width: 22px;
+  height: 22px;
+}
+
+.social-btn:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.perfil-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+}
+
+.perfil-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+#logoutBtn {
+  background: transparent;
+  border: none;
+  color: #ff6666;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+
+

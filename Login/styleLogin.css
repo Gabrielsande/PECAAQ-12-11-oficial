@@ -1,0 +1,320 @@
+/* =====================  
+   CSS ajustado ao HTML fornecido  
+   ======================= */  
+
+/* Variáveis (mantidas) */  
+:root {  
+  --bg: #0e1324;  
+  --card: #1a2240;  
+  --primary-start: #f5c518;  
+  --primary-end: #d9a800;  
+  --text: #e9eefc;  
+  --muted: #8f9bb3;  
+  --muted-dark: #6f7a98;  
+  --shadow: rgba(0, 0, 0, 0.3);  
+  --surface: rgba(255, 255, 255, 0.07);  
+  --surface-2: rgba(255, 255, 255, 0.14);  
+  --radius: 16px;  
+  --radius-lg: 20px;  
+  --focus: 0 0 0 5px rgba(245, 197, 24, 0.25);  
+  --error: #ff6b6b;  
+}  
+
+/* Reset rápido de box sizing (já existente no seu código) */  
+*, *::before, *::after { box-sizing: border-box; }  
+
+/* Corpo e fundo (mantidos) */  
+html, body {  
+  height: 100%;  
+  margin: 0;  
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  
+  background:  
+    radial-gradient(circle at 20% -15%, rgba(245, 197, 24, 0.15), transparent 45%),  
+    radial-gradient(circle at 100% 5%, rgba(0, 0, 0, 0.12), transparent 45%),  
+    linear-gradient(135deg, var(--bg) 0%, var(--card) 100%);  
+  color: var(--text);  
+  -webkit-font-smoothing: antialiased;  
+  -moz-osx-font-smoothing: grayscale;  
+  line-height: 1.6;  
+  -webkit-text-size-adjust: 100%;  
+}  
+
+/* Layout do container de login (centrado) */  
+.login-container {  
+  min-height: 100vh;  
+  display: grid;  
+  place-items: center;  
+  padding: 2.5rem;  
+}  
+
+/* Card */  
+.login-card {  
+  width: 100%;  
+  max-width: 480px;  
+  background: linear-gradient(135deg, rgba(26, 34, 64, 0.95), rgba(26, 34, 64, 0.9));  
+  border-radius: var(--radius-lg);  
+  padding: 2.5rem 2rem 3rem;  
+  border: 1px solid var(--surface-2);  
+  box-shadow: 0 24px 48px var(--shadow);  
+  backdrop-filter: saturate(1.15) blur(3.5px);  
+  overflow: hidden;  
+  position: relative;  
+      padding-top: 60px; /* ajusta de acordo com o tamanho da logo */
+
+  /* mantém o resto do estilo existente (não tocar) */  
+}  
+
+/* Logo no canto superior esquerdo - container dentro do card */  
+.logo-container {
+    display: flex;
+    flex-direction: column; /* logo em cima, texto embaixo */
+    align-items: center;    /* centraliza horizontalmente */
+    justify-content: center;
+    margin-bottom: 25px; /* espaço entre logo e os botões */
+}
+
+.logo {
+    width: 70px; /* tamanho da logo */
+    height: 70px;
+    margin-bottom: 10px; /* espaço entre logo e nome */
+}
+
+.brand__name {
+    font-size: 26px; /* aumentei o tamanho da fonte */
+    font-weight: 800; /* deixei mais grossa */
+    color: #fff;
+    letter-spacing: 2px; /* espaçamento entre letras */
+    text-transform: uppercase; /* deixa em maiúsculas (opcional) */
+}
+
+/* Marca textual - mantém o estilo atual da marca */  
+.brand {  
+  position: absolute;  
+  top: -10px;  
+  left: 0px;  
+  width: 45px;  
+  height: 45px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  padding: 0;  
+  z-index: 2;  
+  pointer-events: none;  
+  background: transparent;  
+}  
+.brand img {  
+  width: 200px;  
+  height: 140px;  
+  object-fit: contain;  
+  display: block;  
+  border-radius: 6px;  
+}  
+
+/* Opcional: afastar o título da marca para não sobrepor o logo */  
+.brand + .brand-title {  
+  margin-top: 0.25rem;  
+  margin-left: calc(48px + 8px); /* desloca o título para a direita do logo */  
+  text-align: left;  
+  position: relative;  
+}  
+.brand-title {  
+  font-size: 28px;  
+  font-weight: 900;  
+  letter-spacing: 1px;  
+  margin: 0;  
+  color: var(--primary-start);  
+  text-align: center;  
+  text-shadow: 0 3px 6px rgba(0,0,0,0.25);  
+}  
+.logo-square {  
+  width: 56px;  
+  height: 56px;  
+  background: linear-gradient(135deg, var(--primary-start), var(--primary-end));  
+  border-radius: 18px;  
+  display: grid;  
+  place-items: center;  
+  box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0.28),  
+              0 9px 24px rgba(245, 197, 24, 0.3);  
+}  
+.brand .car-icon {  
+  font-size: 28px;  
+  line-height: 1;  
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.3));  
+}  
+
+/* Tabs/abas para alternar entre Cliente e Empresa */  
+.tab-selector {  
+  display: flex;  
+  justify-content: center;  
+  gap: 33px;  
+  margin-bottom: 14px;  
+  margin-top: 40px; /* espaçamento abaixo da logo */  
+}  
+.tab {  
+  padding: 12px 28px;  
+  font-size: 1rem;  
+  border: none;  
+  border-radius: 25px;  
+  background-color: #f3f4f6;  
+  color: #333;  
+  font-weight: 500;  
+  cursor: pointer;  
+  transition: all 0.3s ease;  
+}  
+.tab.active {  
+  background: linear-gradient(135deg, var(--primary-start), var(--primary-end));  
+  color: #1a1a1a;  
+  font-weight: 700;  
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);  
+}  
+
+/* Formulários (Cliente / Empresa) */  
+.login-form {  
+  display: none;  
+  grid-gap: 16px;  
+}  
+.login-form.active {  
+  display: grid;  
+}  
+.form-field {  
+  display: flex;  
+  flex-direction: column;  
+  gap: 6px;  
+}  
+.form-field label {  
+  font-size: 13px;  
+  color: var(--muted);  
+  font-weight: 600;  
+}  
+.form-field input {  
+  padding: 12px 14px;  
+  border-radius: 12px;  
+  border: 1.5px solid rgba(255, 255, 255, 0.15);  
+  background: rgba(255, 255, 255, 0.05);  
+  color: var(--text);  
+  font-size: 16px;  
+  font-weight: 500;  
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.25s ease;  
+  outline-offset: 2px;  
+}  
+.form-field input::placeholder {  
+  color: var(--muted);  
+  opacity: 0.7;  
+}  
+.form-field input:focus {  
+  border-color: var(--primary-start);  
+  background: rgba(255, 255, 255, 0.08);  
+  box-shadow: var(--focus);  
+}  
+
+/* Botões de ação (Entrar) moderno com espaçamento já aplicado via classe bean  
+   Mantém o estilo anterior, já com espaçamento adequado no padding. */  
+/* Botão principal - versão mais moderna e profissional */
+/* Espaçamento acima do botão Entrar */
+.primary-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 28px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .2px;
+  cursor: pointer;
+  border: none;
+  border-radius: 999px; /* pill suave */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+  background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+  color: #1a1a1a;
+  box-shadow: 0 8px 20px rgba(245, 183, 0, 0.55);
+  outline: none;
+
+  /* Espaçamento acima do botão (opção: ajuste conforme necessidade) */
+  margin-top: 12px; /* espaço acima, entre o campo anterior e o botão */
+}
+.primary-btn:hover, .primary-btn:focus-visible {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 34px rgba(245, 183, 0, 0.70);
+}
+
+/* Efeito de brilho suave passando por baixo (antes do conteúdo) */
+.primary-btn::before,
+.secondary-btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: rotate(25deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+  z-index: 0; /* manter o brilho atrás do texto */
+}
+
+.primary-btn:hover::before,
+.primary-btn:focus-visible::before,
+.secondary-btn:hover::before,
+.secondary-btn:focus-visible::before {
+  left: 100%;
+}
+
+/* Botões secundários (se usados) com visual moderno */
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text, #eaeaea);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 12px 24px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.secondary-btn:hover,
+.secondary-btn:focus-visible {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.25);
+  outline: none;
+}
+.hide-abas .tab-selector {
+  display: none;
+}
+.content-area {
+    margin-top: 20px; /* ou mais, se precisar */
+}
+.cadastro-rodape-left {
+  text-align: left;
+}
+/* Alinhar o rodapé do cadastro à esquerda */
+.cadastro-footer {
+  text-align: left; /* garante que o conteúdo fique alinhado à esquerda */
+  margin-top: 16px;
+  color: #fff;
+  /* manter o espaço e estilo já existente */
+}
+/* Responsivo */
+@media (max-width: 520px) {
+  .login-card {
+    padding: 1.8rem 1.5rem 2.5rem;
+  }
+  .brand-title {
+    font-size: 24px;
+  }
+  .tab-selector {
+    gap: 8px;
+  }
+  .tab {
+    padding: 12px 20px;
+  }
+  .primary-btn,
+  .secondary-btn {
+    padding: 14px 28px;
+    font-size: 14px;
+  }
+  .login-card__logo {
+    width: 40px;
+    height: 40px;
+  }
+}
