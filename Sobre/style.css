@@ -1,0 +1,233 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #121212;
+  color: #fff;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(180deg, #1b1b1b, #151515);
+  padding: 18px 50px;
+  gap: 100px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar .logo img {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 50px;
+}
+
+.navbar a {
+  color: #ccc;
+  text-decoration: none;
+  font-family: 'Fjalla One', sans-serif;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navbar a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #FFD700;
+  bottom: -5px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #FFD700;
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+/* ===== SOBRE (CARRO AO FUNDO) ===== */
+.sobre-clean {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 10%;
+  background: linear-gradient(180deg, #0d0d0d, #1a1a1a);
+  color: #f2f2f2;
+}
+
+.sobre-clean::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("img/porshe.jpg") center/cover no-repeat;
+  opacity: 0.35; /* imagem mais visível */
+  filter: blur(1px) brightness(0.8); /* leve desfoque e um pouco mais clara */
+  z-index: 0;
+}
+
+.sobre-clean .container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  max-width: 1200px;
+  flex-wrap: wrap;
+}
+
+.sobre-clean .texto {
+  flex: 1 1 500px;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 40px;
+  border-radius: 15px;
+  /* removido o box-shadow amarelo */
+}
+
+.sobre-clean h2 {
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 2.3rem;
+  color: #FFD700;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.sobre-clean p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ddd;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* remove imagem lateral */
+.sobre-clean .imagem {
+  display: none;
+}
+
+/* ===== EQUIPE ===== */
+.equipe {
+  text-align: center;
+  padding: 100px 40px;
+  background: #0d0d0d;
+}
+
+.equipe h2 {
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 2.5rem;
+  color: #FFD700;
+  margin-bottom: 10px;
+}
+
+.equipe .descricao {
+  font-size: 1.1rem;
+  color: #bbb;
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+/* ===== FLIP CARDS ===== */
+.membros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.membro {
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.membro.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  backface-visibility: hidden;
+  background: #181818;
+  border: 1px solid #333;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  transition: box-shadow 0.3s;
+}
+
+.card-front:hover {
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+}
+
+.card-front img {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background: #222;
+  color: #fff;
+  padding: 25px;
+  text-align: center;
+}
+
+.card-back h3 {
+  color: #FFD700;
+  margin-bottom: 10px;
+}
+
+.card-back p {
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  padding: 25px;
+  background: #0a0a0a;
+  color: #dcdcdc;
+  font-size: 0.95rem;
+}

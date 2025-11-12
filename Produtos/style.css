@@ -1,0 +1,914 @@
+/*
+  ==========================================
+  Seção: Variáveis e Estilos Globais
+  - Define cores, espaçamentos e fontes para fácil customização.
+  - Aplica estilos básicos a todo o corpo do site e ao container principal.
+  ==========================================
+*/
+:root {
+    --bg: #ffffff;
+    /* fundo branco clean */
+    --card: #f9f9f9;
+    /* leve cinza para cartões */
+    --accent: #001228;
+    /* azul escuro principal */
+    --highlight: #FFD300;
+    /* amarelo destaque */
+    --muted: #666;
+    /* cinza secundário */
+    --radius: 12px;
+    --gap: 20px;
+    --container: 1200px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+* {
+    box-sizing: border-box;
+    /* Garante que padding e border sejam incluídos na largura/altura de um elemento */
+}
+
+body {
+    margin: 0;
+    /* Remove a margem padrão do body */
+    background: var(--bg);
+    /* Aplica a cor de fundo definida na variável */
+    color: #222;
+    /* Define a cor padrão do texto */
+    font-size: 15px;
+    /* Define o tamanho da fonte padrão */
+    line-height: 1.3;
+    /* Define a altura da linha para melhor legibilidade */
+}
+
+.container {
+    max-width: var(--container);
+    /* Limita a largura do container */
+    margin: 0 auto;
+    /* Centraliza o container na página */
+    padding: var(--gap);
+    /* Adiciona um padding interno */
+}
+
+/*
+  ==========================================
+  Seção: Header Profissional
+  - Estiliza o cabeçalho do site com uma barra de busca e links de navegação separados.
+  - O visual é moderno, limpo e profissional.
+  ==========================================
+*/
+
+/* ===============================
+   HEADER PROFISSIONAL PADRÃO
+   =============================== */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #0D1B2A;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.5rem 2rem;
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  height: 120px;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+/* Marca (logo + nome) */
+.brand {
+  display: flex;
+  align-items: center;
+    gap: 10px;
+  text-decoration: none;
+}
+
+.brand__logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.brand__name {
+    font-size: 26px; /* aumentei o tamanho da fonte */
+    font-weight: 800; /* deixei mais grossa */
+    color: #fff;
+    letter-spacing: 2px; /* espaçamento entre letras */
+    text-transform: uppercase; /* deixa em maiúsculas (opcional) */
+}
+
+/* Barra de busca */
+.search-wrap {
+  flex: 1;
+  margin: 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  position: relative; /* <-- ESSENCIAL */
+}
+
+.search-wrap input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 1px solid transparent;
+  font-size: 15px;
+  background-color: #f9f9f9;
+  transition: 0.3s ease;
+}
+
+.search-wrap input:focus {
+  outline: none;
+  border-color: var(--accent, #2e8b3a);
+  box-shadow: 0 0 0 3px rgba(46, 139, 58, 0.2);
+}
+
+
+ /* Lista de sugestões */
+.suggestions {
+  position: absolute;
+  top: 100%; /* aparece logo abaixo do input */
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 200; /* acima de tudo */
+}
+
+/* Esconde a lista */
+.suggestions.hidden {
+  display: none;
+}
+
+/* Cada item da lista */
+.suggestions li {
+  padding: 10px 15px;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* Hover bonito */
+.suggestions li:hover {
+  background: #f2f4f8;
+}
+
+/* Para destacar parte do texto pesquisado */
+.suggestions li strong {
+  color: var(--accent, #2e8b3a);
+}
+/* Navegação */
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  padding: .5rem .75rem;
+  border-radius: 6px;
+  color: #c8d2ee;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  background: #162139;
+  color: #fff;
+}
+
+/* Botão destaque (cadastro/login) */
+.btn-primary {
+  background: var(--accent, #2e8b3a);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #16712f;
+  transform: translateY(-2px);
+}
+
+/* Toggle menu (mobile) */
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav__toggle span {
+  width: 22px;
+  height: 2px;
+  background: #c8d2ee;
+  border-radius: 2px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .search-wrap {
+    display: none;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
+}
+
+/*
+  ==========================================
+  Seção: Main Grid e Sidebar (Estilo CompreSuaPeca.com.br)
+  - Estrutura a área principal em duas colunas: filtros e produtos.
+  - Estiliza a barra lateral (sidebar) para os filtros, com base no site de referência.
+  ==========================================
+*/
+.main-grid {
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    /* Coluna para a sidebar e para o conteúdo principal */
+    gap: var(--gap);
+    padding: 20px 16px;
+}
+
+.sidebar {
+    background: #fff; /* fundo branco padrão */
+    padding: 10px 0;  /* menos padding */
+    border: none;     /* remove borda */
+    height: auto;     /* altura natural */
+    box-shadow: none; /* remove sombra */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Título principal */
+.sidebar h2 {
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    border: none;  /* sem borda inferior */
+    padding: 0;
+}
+
+.filter-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Títulos das seções de filtro */
+.filter-block h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--accent);
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-block h3::after {
+    content: '▲';
+    /* Caractere de seta para indicar expansão/contração */
+    font-size: 12px;
+    color: #555;
+    transition: transform 0.2s ease;
+}
+
+.filter-block.collapsed h3::after {
+    transform: rotate(180deg);
+    /* Rotação da seta quando colapsado */
+}
+
+.filter-block .filter-content {
+    display: block;
+    /* Conteúdo visível por padrão */
+}
+
+.filter-block.collapsed .filter-content {
+    display: none;
+    /* Conteúdo oculto quando colapsado */
+}
+
+.checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 180px;
+    /* Limita a altura da lista para adicionar scrollbar */
+    overflow-y: auto;
+    /* Adiciona scrollbar vertical quando necessário */
+    padding-right: 4px;
+}
+
+.checkbox-list label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: #333;
+    font-size: 14px;
+    user-select: none;
+    /* Impede a seleção de texto ao clicar na label */
+    transition: color 0.2s ease;
+}
+
+.checkbox-list label:hover {
+    color: var(--accent);
+    /* Altera a cor do texto ao passar o mouse */
+}
+
+/* Estilização do checkbox */
+.checkbox-list input[type="checkbox"] {
+    -webkit-appearance: none;
+    /* Remove o estilo padrão do navegador (para Webkit) */
+    appearance: none;
+    /* Remove o estilo padrão do navegador (para outros) */
+    width: 16px;
+    height: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.checkbox-list input[type="checkbox"]:checked {
+    background-color: var(--accent);
+    /* Altera a cor de fundo quando marcado */
+    border-color: var(--accent);
+}
+
+.checkbox-list input[type="checkbox"]:checked::after {
+    content: '✔';
+    /* Adiciona o ícone de check quando marcado */
+    color: #fff;
+    font-size: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Centraliza o ícone de check */
+}
+
+.filter-block .link-btn {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    color: #555;
+    padding: 6px;
+    font-weight: 500;
+    border-radius: 4px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.filter-block .link-btn:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.filter-block input[type="number"] {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.content {
+    padding: 6px;
+}
+
+.content-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.products-count {
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.sort-wrap {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.sort-wrap label {
+    font-size: 14px;
+    color: #555;
+}
+
+.sort-wrap select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 colunas de produtos por padrão */
+    gap: 14px;
+}
+
+/*
+  ==========================================
+  Seção: Cards de Produtos
+  - Estiliza os cards individuais de cada produto.
+  - Inclui efeitos de transição para um visual mais dinâmico.
+  ==========================================
+*/
+.product-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    height: 350px;
+    width: 200px;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    /* Efeito de elevação ao passar o mouse */
+}
+
+.product-card .img-wrap {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    height: 160px;
+}
+
+.product-card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Garante que a imagem se ajuste sem distorcer */
+}
+
+.product-card .product-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin: 10px;
+    min-height: 40px;
+    line-height: 1.3em;
+}
+
+.product-card .price {
+    color: #e05c0b;
+    /* Cor de destaque para o preço */
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 10px;
+}
+
+.product-card .installments {
+    font-size: 13px;
+    color: #777;
+    margin: 0 10px 10px;
+}
+
+.btn-cart,
+.buy-btn {
+    background: var(--highlight);
+    color: var(--accent);
+    font-weight: 700;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-cart:hover,
+.buy-btn:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+.product-card .buy-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0 10px 12px;
+    width: calc(100% - 20px);
+    transition: background 0.2s ease;
+    text-decoration: none; /* remove o sublinhado */
+}
+
+.product-card .buy-btn:hover {
+    background: #16712f;
+}
+
+/*
+  ==========================================
+  Seção: Paginação e Botão WhatsApp
+  - Estiliza os botões de navegação da página.
+  - Define a posição e o estilo do botão flutuante do WhatsApp.
+  ==========================================
+*/
+.pagination {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18px;
+    color: var(--muted);
+}
+
+.whatsapp {
+    position: fixed;
+    /* Fixa a posição do botão na tela */
+    right: 20px;
+    /* Distância da borda direita */
+    bottom: 20px;
+    /* Distância da borda inferior */
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    /* Transforma o botão em um círculo */
+    border: 0;
+    background: #25d366;
+    color: white;
+    font-size: 22px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/*
+  ==========================================
+  Seção: Rodapé (Footer)
+  - Estrutura e estiliza o rodapé do site.
+  - Inclui seções para contato, links úteis e redes sociais.
+  ==========================================
+*/
+.site-footer {
+    background:#0a0f1c;
+    background-size: cover; /* cobre todo o footer */
+    color: #eee;
+    padding: 40px;
+    font-size: 14px;
+    height: 500px;
+}
+
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    /* centraliza horizontalmente */
+    gap: 160px;
+    /* distância entre as colunas, ajuste se quiser */
+    padding-bottom: 25px;
+    margin-bottom: 20px;
+}
+
+.footer-section {
+    text-align: left;
+    /* mantém os textos alinhados à esquerda dentro de cada coluna */
+}
+
+.footer-section h4 {
+    color: #fff;
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+
+.footer-section {
+    gap: 0;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #eee;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--accent);
+    /* Altera a cor do link ao passar o mouse */
+}
+
+.copyright {
+    font-size: 13px;
+    color: #aaa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 160px; /* distância entre os 3 blocos */
+    border-top: 1px solid #333;
+    padding-top: 20px;
+}
+
+.copyright-img {
+    display: flex; 
+    align-items: center; /* alinha verticalmente logo e texto */
+    gap: 10px; /* espaço entre logo e nome */
+}
+
+.footer_logo {
+    width: 40px; /* ajuste conforme o tamanho da sua logo */
+    height: auto;
+}
+
+.footer__logo {
+    font-size: 26px; /* aumentei o tamanho da fonte */
+    font-weight: 800; /* deixei mais grossa */
+    color: #fff;
+    letter-spacing: 2px; /* espaçamento entre letras */
+    text-transform: uppercase; /* deixa em maiúsculas (opcional) */
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #555;
+}
+
+.social-buttons {
+    display: flex;          /* coloca os botões lado a lado */
+    gap: 10px;              /* espaço entre eles */
+    justify-content: center; /* centraliza no container */
+    margin-top: 15px;       /* opcional: dá um respiro */
+}
+
+.social-btn {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.social-btn img {
+    width: 22px;
+    height: 22px;
+}
+
+.social-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+/*
+  ==========================================
+  Seção: Responsividade Geral
+  - Ajusta o layout para diferentes tamanhos de tela (mobile e tablets).
+  ==========================================
+*/
+/* ==========================================
+   Responsividade Atualizada
+========================================== */
+
+/* Desktop grande (>1200px) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+        padding: var(--gap);
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .main-grid {
+        grid-template-columns: 290px 1fr;
+        gap: var(--gap);
+    }
+}
+
+/* Laptops e desktops médios (1000px - 1199px) */
+@media (max-width: 1199px) and (min-width: 1000px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .main-grid {
+        grid-template-columns: 240px 1fr;
+        padding: 20px 14px;
+    }
+
+    .header__inner {
+        justify-content: space-between;
+    }
+}
+
+/* Tablets grandes (800px - 999px) */
+@media (max-width: 999px) and (min-width: 800px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .main-grid {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 16px 12px;
+    }
+
+    .header__inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .search-wrap {
+        margin: 10px 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+}
+
+/* Tablets pequenos e celulares grandes (600px - 799px) */
+@media (max-width: 799px) and (min-width: 600px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .main-grid {
+        padding: 12px;
+    }
+
+    .header__inner {
+        gap: 12px;
+    }
+
+    .search-wrap {
+        max-width: 90%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
+
+/* Celulares (menos de 600px) */
+@media (max-width: 599px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .main-grid {
+        padding: 8px;
+    }
+
+    .header__inner {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .brand__logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .brand__name {
+        font-size: 20px;
+    }
+
+    .search-wrap {
+        margin: 5px 0;
+        width: 100%;
+    }
+
+    .nav a, .btn-primary {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+
+    .sidebar {
+        padding: 12px 8px;
+    }
+
+    .footer-section h4 {
+        border-left: none;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 5px;
+        display: inline-block;
+        font-size: 14px;
+    }
+}
+
+/* Extra Mobile: muito pequeno (<400px) */
+@media (max-width: 399px) {
+    .product-card {
+        width: 100%;
+        height: auto;
+    }
+
+    .product-card .img-wrap {
+        height: 140px;
+    }
+
+    .buy-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+.perfil-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+}
+
+.perfil-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+#logoutBtn {
+  background: transparent;
+  border: none;
+  color: #ff6666;
+  cursor: pointer;
+  font-size: 0.9em;
+}
